@@ -15,7 +15,7 @@ export default function TodosPage() {
   const fetchTodos = async () => {
     setLoading(true); 
     try {
-      const res = await fetch("http://localhost:5000/api/todos");
+      const res = await fetch("https://a-todo.onrender.com/api/todos");
       const data = await res.json();
       setTodos(data);
     } catch (error) {
@@ -28,7 +28,7 @@ export default function TodosPage() {
   const addTodo = async () => {
     if (!title.trim()) return toast.error("Task title cannot be empty!");
     try {
-      const res = await fetch("http://localhost:5000/api/todos", {
+      const res = await fetch("https://a-todo.onrender.com/api/todos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title }),
@@ -44,7 +44,7 @@ export default function TodosPage() {
 
   const deleteTodo = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/todos/${id}`, { method: "DELETE" });
+      await fetch(`https://a-todo.onrender.com/api/todos/${id}`, { method: "DELETE" });
       setTodos(todos.filter((todo) => todo._id !== id));
       toast.info("Task deleted!");
     } catch (error) {
@@ -66,7 +66,7 @@ export default function TodosPage() {
     if (!editingTitle.trim()) return toast.error("Task title cannot be empty!");
     
     try {
-      const res = await fetch(`http://localhost:5000/api/todos/${id}`, {
+      const res = await fetch(`https://a-todo.onrender.com/api/todos/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: editingTitle }),
